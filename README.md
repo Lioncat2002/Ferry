@@ -15,4 +15,5 @@ A Rustified package manager for python
 
 ### 0.0.1 (WIP)
 - Ability to uninstall dependencies
+- Custom Virtual Environment
 - More features TBD
