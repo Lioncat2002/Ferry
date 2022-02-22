@@ -1,3 +1,4 @@
 [config]
 name="helow"
 [dependencies]
+pylcanim="0.0.7"

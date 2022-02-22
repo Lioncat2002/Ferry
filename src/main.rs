@@ -36,7 +36,13 @@ fn install_deps() {
     let content = fs::read_to_string("ferry.toml").expect("Damn something went wrong :/");
     let value = content.parse::<Value>().unwrap();
     let dependencies = value["dependencies"].as_table().unwrap();
-
+    //trying to get pip to work but damn :/ 2 hrs wasted
+    let res = Command::new("powershell")
+            .args(["-C","./env/Scripts/Activate.ps1"]) //kinda weird but need to add args seperately
+            .output()
+            .expect("Failed to run");
+            println!("{}", String::from_utf8_lossy(&res.stdout));
+            println!("{}", String::from_utf8_lossy(&res.stderr));
     for (name, version) in dependencies {
         let lib = format!("{}=={}", name, version); //format the name and version
         let lib = lib.replace("\"", ""); //need to replace the extra " " coz pip starts acting weird but ok ig
