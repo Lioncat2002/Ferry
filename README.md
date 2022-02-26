@@ -4,7 +4,6 @@ A Rustified package manager for python
 # How to Use?
 - Make sure you got Rust installed since I am not yet providing a built version :p
 - Create a new project with `ferry new <project_name>` 
-- Manually activate the virtual environment with `<project_name>/env/Scripts/activate` (kinda facing trouble trying to activate this automatically)
 - Add your dependencies along with their versions under the `[dependencies]` heading in `ferry.toml`
 - Install all the dependencies with `ferry fetch`
 
