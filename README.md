@@ -15,5 +15,5 @@ A Rustified package manager for python
 
 ### 0.0.1 (WIP)
 - Ability to uninstall dependencies
-- Custom Virtual Environment
+- ~Ability to install packages directly using ferry fetch~
 - More features TBD
