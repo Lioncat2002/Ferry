@@ -8,11 +8,14 @@ A Rustified package manager for python
 - Install all the dependencies with `ferry fetch`
 
 # Road Map
-### 0.0.0:
-- ~Ability to install dependencies~
-- ~Ability to create a new project~
 
 ### 0.0.1 (WIP)
 - Ability to uninstall dependencies
 - ~Ability to install packages directly using ferry fetch~
 - More features TBD
+
+### 0.0.0:
+- ~Ability to install dependencies~
+- ~Ability to create a new project~
+
+
