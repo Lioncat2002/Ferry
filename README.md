@@ -9,10 +9,12 @@ A Rustified package manager for python
 
 # Road Map
 
-### 0.0.1 (WIP)
-- Ability to uninstall dependencies
+### 0.0.2(WIP)
+- Ability to run the python program using `ferry run`
+- Ability to uninstall unused packages
+
+### 0.0.1
 - ~Ability to install packages directly using ferry fetch~
-- More features TBD
 
 ### 0.0.0:
 - ~Ability to install dependencies~
