@@ -1,6 +1,11 @@
+mod cli;
+
+use clap::Parser;
 use std::fs;
 use std::process::Command;
 use toml::Value;
+
+use cli::{Cli, Command as FerryCommand};
 
 fn new_project(project_name: String) {
     //creating the base of ferry.toml
@@ -57,15 +62,10 @@ fn install_deps() {
 }
 
 fn main() {
-    let command = std::env::args().nth(1).unwrap();
-    println!("{}", command);
-    if command == "fetch" {
-        install_deps();
-    }
-    if command == "new" {
-        let project_name = std::env::args()
-            .nth(2)
-            .expect("Error missing project name!");
-        new_project(project_name);
+    let cli = Cli::parse();
+
+    match cli.command {
+        FerryCommand::Fetch => install_deps(),
+        FerryCommand::New { project_name } => new_project(project_name),
     }
 }
