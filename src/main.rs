@@ -5,7 +5,7 @@ use toml::Value;
 fn new_project(project_name: String) {
     //creating the base of ferry.toml
     let contents = format!(
-        "[config]
+"[config]
 name=\"{}\"
 author=\"\"
 url=\"\"
@@ -20,6 +20,8 @@ url=\"\"
         .args(["-m", "venv", &project_path])
         .output()
         .expect("Failed to spawn a new virtual env");
+    
+    //printing possible outputs and errors
     println!("{}", String::from_utf8_lossy(&res.stdout));
     println!("{}", String::from_utf8_lossy(&res.stderr));
 
@@ -42,9 +44,9 @@ fn install_deps() {
         let lib = format!("{}=={}", name, version); //format the name and version
         let lib = lib.replace("\"", ""); //need to replace the extra " " coz pip starts acting weird but ok ig
 
-        println!("{}", &lib);
+        println!("Installing {}", &lib);
         
-        let res = Command::new("env/Scripts/pip")
+        let res = Command::new("env/Scripts/pip")//using the pip inside the virtual env
             .args(["install", &lib]) //kinda weird but need to add args seperately
             .output()
             .expect("Failed to run"); //calling pip
