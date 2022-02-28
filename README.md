@@ -11,6 +11,7 @@ A Rustified package manager for python
 # Road Map
 
 ### 0.0.2(WIP)
+- ~Better Cli~
 - Ability to run the python program using `ferry run`
 - Ability to uninstall unused packages
 
