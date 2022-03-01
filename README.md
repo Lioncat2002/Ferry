@@ -13,6 +13,8 @@ A Rustified package manager for python
 ### 0.0.2(WIP)
 - ~Ability to run the python program using `ferry run`~
 - ~Better Cli~
+- ~Better Cli~
+- Ability to run the python program using `ferry run`
 - Ability to uninstall unused packages
 
 ### 0.0.1
