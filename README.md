@@ -3,6 +3,7 @@ A Rustified package manager for python
 
 # How to Use?
 - Make sure you got Rust installed since I am not yet providing a built version :p
+- Compile the project with `cargo build`
 - Create a new project with `ferry new <project_name>` 
 - Add your dependencies along with their versions under the `[dependencies]` heading in `ferry.toml`
 - Install all the dependencies with `ferry fetch`
@@ -10,7 +11,8 @@ A Rustified package manager for python
 # Road Map
 
 ### 0.0.2(WIP)
-- Ability to run the python program using `ferry run`
+- ~Ability to run the python program using `ferry run`~
+- ~Better Cli~
 - Ability to uninstall unused packages
 
 ### 0.0.1

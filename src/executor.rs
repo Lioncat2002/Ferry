@@ -2,6 +2,17 @@ use std::fs;
 use std::process::Command;
 use toml::Value;
 
+pub fn run_program(){
+
+    let res = Command::new("env/Scripts/python") //using the pip inside the virtual env
+        .args(["main.py"])
+        .output()
+        .expect("Failed to run");
+    //print out possible outputs and errors
+    println!("{}", String::from_utf8_lossy(&res.stdout));
+    println!("{}", String::from_utf8_lossy(&res.stderr));
+}
+
 pub fn install_deps() {
     let content = fs::read_to_string("ferry.toml").expect("Damn something went wrong :/");
     let value = content.parse::<Value>().unwrap(); //parsing the toml file

@@ -11,7 +11,7 @@ pub struct Cli {
 pub enum Command {
     /// Install project dependencies
     Fetch,
-
+    Run,
     /// Create new Ferry project
     New {
         /// Project name
