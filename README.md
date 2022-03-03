@@ -10,10 +10,10 @@ A Rustified package manager for python
 
 # Road Map
 
-### 0.0.2(WIP)
+### 0.0.2
 - ~Ability to run the python program using `ferry run`~
 - ~Better Cli~
-- Ability to uninstall unused packages
+
 
 ### 0.0.1
 - ~Ability to install packages directly using ferry fetch~
