@@ -18,4 +18,9 @@ pub enum Command {
         #[clap(value_name = "NAME")]
         project_name: String,
     },
+    /// Generate documentation of a particular file
+    Doc{
+        #[clap(value_name="Path to file")]
+        path:String,
+    }
 }

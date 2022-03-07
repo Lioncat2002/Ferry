@@ -1,6 +1,33 @@
 use std::fs;
 use std::process::Command;
+use regex::Regex;
 use toml::Value;
+
+
+pub fn generate_docs(path:String){
+
+    /*
+    setting '''doc as a special type of docstring which will be used 
+    for generating documentation :p
+
+    also use lazy repetition(.*?) instead of greedy(.*)
+    else incorrect selection of docstring contents occures when 
+    using multiple docstrings in a single file
+    ref: https://users.rust-lang.org/t/regular-expression/56925/4 
+    */ 
+    
+    let re=Regex::new(r"(?s)'''doc(.*?)'''").unwrap();
+
+    let data=fs::read_to_string(path).expect("Error file not found!");
+
+    for doc in re.captures_iter(&data){
+        println!("new docstring found:");
+        println!("{}",doc.get(1).unwrap().as_str());
+        
+    }
+
+}
+
 
 pub fn run_program(){
 
