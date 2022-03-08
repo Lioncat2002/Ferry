@@ -20,7 +20,8 @@ A Rustified package manager for python
 
 ### 0.0.3
 - Support for md in the doc strings
-- Ability to generate Docs from the docstrings
+- Convert doc to html
+- ~Ability to generate Docs from the docstrings~
 
 ### 0.0.2
 - ~Ability to run the python program using `ferry run`~
