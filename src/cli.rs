@@ -11,16 +11,18 @@ pub struct Cli {
 pub enum Command {
     /// Install project dependencies
     Fetch,
+    ///Run the python program
     Run,
     /// Create new Ferry project
     New {
         /// Project name
-        #[clap(value_name = "NAME")]
+        #[clap(value_name = "Name")]
         project_name: String,
     },
     /// Generate documentation of a particular file
     Doc{
-        #[clap(value_name="Path to file")]
+        /// Path to the file
+        #[clap(value_name="Path")]
         path:String,
     }
 }

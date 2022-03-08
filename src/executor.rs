@@ -23,7 +23,10 @@ pub fn generate_docs(path:String){
     for doc in re.captures_iter(&data){
         println!("new docstring found:");
         println!("{}",doc.get(1).unwrap().as_str());
-        
+        /*
+        Currently prints only the docstrings which are marked with '''doc
+        TODO: Adding the function definition as well
+        */       
     }
 
 }
