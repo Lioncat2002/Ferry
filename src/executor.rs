@@ -16,17 +16,16 @@ pub fn generate_docs(path:String){
     ref: https://users.rust-lang.org/t/regular-expression/56925/4 
     */ 
     
-    let re=Regex::new(r"(?s)'''doc(.*?)'''").unwrap();
+    let re=Regex::new(r"(?s)def(.*?)'''doc(.*?)'''").unwrap();
 
     let data=fs::read_to_string(path).expect("Error file not found!");
 
     for doc in re.captures_iter(&data){
-        println!("new docstring found:");
-        println!("{}",doc.get(1).unwrap().as_str());
-        /*
-        Currently prints only the docstrings which are marked with '''doc
-        TODO: Adding the function definition as well
-        */       
+        println!("Function definition:");
+        println!("{}\n",doc.get(1).unwrap().as_str().trim());
+        println!("Function description:");
+        println!("{}\n\n",doc.get(2).unwrap().as_str().trim());
+        //TODO: Write the definition and description to a html file      
     }
 
 }
