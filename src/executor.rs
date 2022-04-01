@@ -86,7 +86,7 @@ url=\"\"
     //path of the env
     let project_path = format!("{}/env", project_name);
     //creating a new virtual environment
-    let res = Command::new("python")
+    let res = Command::new("python3")
         .args(["-m", "venv", &project_path])
         .output()
         .expect("Failed to spawn a new virtual env");
