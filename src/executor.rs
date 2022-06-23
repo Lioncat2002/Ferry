@@ -3,6 +3,15 @@ use std::process::Command;
 use regex::Regex;
 use toml::Value;
 
+#[cfg(target_os = "linux")]
+static PIP_PATH: &str = "env/bin/pip3";
+#[cfg(target_os = "windows")]
+static PIP_PATH: &str = "env/Scripts/pip";
+
+#[cfg(target_os = "linux")]
+static PYTHON_PATH: &str = "env/bin/python3";
+#[cfg(target_os = "windows")]
+static PYTHON_PATH: &str = "env/Scripts/python";
 
 pub fn generate_docs(path:String){
 
@@ -33,7 +42,7 @@ pub fn generate_docs(path:String){
 
 pub fn run_program(){
 
-    let res = Command::new("env/Scripts/python") //using the pip inside the virtual env
+    let res = Command::new(PYTHON_PATH) //using the pip inside the virtual env
         .args(["main.py"])
         .output()
         .expect("Failed to run");
@@ -61,7 +70,7 @@ pub fn install_deps() {
 
     println!("Installing:\n{:?}", all_deps);
     //Reduced to a single subprocess call
-    let res = Command::new("env/Scripts/pip") //using the pip inside the virtual env
+    let res = Command::new(PIP_PATH) //using the pip inside the virtual env
         .args(["install"])
         .args(all_deps) //pip adds an ' ' around the all_deps string so we are passing it as an array
         .output()
@@ -101,7 +110,7 @@ url=\"\"
 
     //creating the main.py
     let path = format!("{}/main.py", project_name);
-    let contents = "print('Hello World!')";
+    let contents = "print('Hello from Ferry!')";
     fs::write(path, contents).expect("Couldn't write main.py file");
 
     //creating the .gitignore
