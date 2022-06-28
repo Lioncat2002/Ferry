@@ -13,7 +13,7 @@ A Rustified package manager for python
 - Create new python project with `ferry new <project_name>`
 - Install packages from `ferry.toml` using `ferry fetch`
 - Run python program with `ferry run`
-- Python Docs generation(WIP)
+- Python Docs generation `ferry doc <name_of_file.py>`
 
 
 # Road Map
