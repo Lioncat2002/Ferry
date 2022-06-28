@@ -2,6 +2,7 @@ use std::fs;
 use std::process::Command;
 use regex::Regex;
 use toml::Value;
+use comrak::{markdown_to_html, ComrakOptions};
 
 #[cfg(target_os = "linux")]
 static PIP_PATH: &str = "env/bin/pip3";
@@ -24,19 +25,21 @@ pub fn generate_docs(path:String){
     using multiple docstrings in a single file
     ref: https://users.rust-lang.org/t/regular-expression/56925/4 
     */ 
-    
     let re=Regex::new(r"(?s)def(.*?)'''doc(.*?)'''").unwrap();
 
-    let data=fs::read_to_string(path).expect("Error file not found!");
+    let data=fs::read_to_string(&path).expect("Error file not found!");
 
+    let mut html=String::new();
     for doc in re.captures_iter(&data){
-        println!("Function definition:");
-        println!("{}\n",doc.get(1).unwrap().as_str().trim());
-        println!("Function description:");
-        println!("{}\n\n",doc.get(2).unwrap().as_str().trim());
+        
+        let func_def=doc.get(1).unwrap().as_str().trim();
+        let func_desc=doc.get(2).unwrap().as_str().trim();
+        
+        let doc=format!("## {}\n {}",func_def,func_desc);
+        html+=&markdown_to_html(&doc, &ComrakOptions::default());
         //TODO: Write the definition and description to a html file      
     }
-
+    fs::write("doc.html", html).unwrap();
 }
 
 

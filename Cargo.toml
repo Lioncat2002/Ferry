@@ -9,3 +9,4 @@ edition = "2021"
 clap = { version = "3.1", features = ["derive"] }
 toml = "0.5.8"
 regex = "1.5.4"
+comrak = "0.13"

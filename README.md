@@ -21,7 +21,7 @@ A Rustified package manager for python
 ### 0.0.3
 - Support for md in the doc strings
 - Convert doc to html
-- Linux support
+- ~Linux support~
 - ~Ability to generate Docs from the docstrings~
 
 ### 0.0.2
