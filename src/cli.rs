@@ -20,9 +20,9 @@ pub enum Command {
         project_name: String,
     },
     /// Generate documentation of a particular file
-    Doc{
+    Doc {
         /// Path to the file
-        #[clap(value_name="Path")]
-        path:String,
-    }
+        #[clap(value_name = "Path")]
+        path: String,
+    },
 }

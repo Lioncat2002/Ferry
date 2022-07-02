@@ -1,8 +1,8 @@
+use comrak::{markdown_to_html, ComrakOptions};
+use regex::Regex;
 use std::fs;
 use std::process::Command;
-use regex::Regex;
 use toml::Value;
-use comrak::{markdown_to_html, ComrakOptions};
 
 #[cfg(target_os = "linux")]
 static PIP_PATH: &str = "env/bin/pip3";
@@ -14,37 +14,34 @@ static PYTHON_PATH: &str = "env/bin/python3";
 #[cfg(target_os = "windows")]
 static PYTHON_PATH: &str = "env/Scripts/python";
 
-pub fn generate_docs(path:String){
-
+pub fn generate_docs(path: String) {
     /*
-    setting '''doc as a special type of docstring which will be used 
+    setting '''doc as a special type of docstring which will be used
     for generating documentation :p
 
     also use lazy repetition(.*?) instead of greedy(.*)
-    else incorrect selection of docstring contents occures when 
+    else incorrect selection of docstring contents occures when
     using multiple docstrings in a single file
-    ref: https://users.rust-lang.org/t/regular-expression/56925/4 
-    */ 
-    let re=Regex::new(r"(?s)def(.*?)'''doc(.*?)'''").unwrap();
+    ref: https://users.rust-lang.org/t/regular-expression/56925/4
+    */
+    let re = Regex::new(r"(?s)def(.*?)'''doc(.*?)'''").unwrap();
 
-    let data=fs::read_to_string(&path).expect("Error file not found!");
+    let data = fs::read_to_string(&path).expect("Error file not found!");
 
-    let mut html=String::new();
-    for doc in re.captures_iter(&data){
-        
-        let func_def=doc.get(1).unwrap().as_str().trim();
-        let func_desc=doc.get(2).unwrap().as_str().trim();
-        
-        let doc=format!("## {}\n {}",func_def,func_desc);
-        html+=&markdown_to_html(&doc, &ComrakOptions::default());
-        //TODO: Write the definition and description to a html file      
+    let mut html = String::new();
+    for doc in re.captures_iter(&data) {
+        let func_def = doc.get(1).unwrap().as_str().trim();
+        let func_desc = doc.get(2).unwrap().as_str().trim();
+
+        let doc = format!("## {}\n {}", func_def, func_desc);
+
+        html += &markdown_to_html(&doc, &ComrakOptions::default());
+        //TODO: auto write feature for all files
     }
     fs::write("doc.html", html).unwrap();
 }
 
-
-pub fn run_program(){
-
+pub fn run_program() {
     let res = Command::new(PYTHON_PATH) //using the pip inside the virtual env
         .args(["main.py"])
         .output()
@@ -59,17 +56,17 @@ pub fn install_deps() {
     let value = content.parse::<Value>().unwrap(); //parsing the toml file
     let dependencies = value["dependencies"].as_table().unwrap();
 
-    let mut all_deps = "".to_owned();
+    let mut all_deps = vec![];
 
     for (name, version) in dependencies {
-        let lib = format!("{}=={} ", name, version); //format the name and version
+        let lib = format!("{}=={}", name, version.to_string()); //format the name and version
         let lib = lib.replace("\"", ""); //need to replace the extra " " coz pip starts acting weird but ok ig
-        all_deps.push_str(&lib); //adding all the dependencies into a string
+        all_deps.push(lib); //adding all the dependencies into a string
     }
 
-    all_deps = all_deps.trim().to_string(); //trimming whitespaces
-    let all_deps = all_deps.split(' ').collect::<Vec<&str>>(); //splitting since pip adds an
-                                                               // extra ' ' around the string if pass as a single argument
+    //all_deps = all_deps.trim().to_string(); //trimming whitespaces
+    //let all_deps = all_deps.split(' ').collect::<Vec<&str>>(); //splitting since pip adds an
+    // extra ' ' around the string if pass as a single argument
 
     println!("Installing:\n{:?}", all_deps);
     //Reduced to a single subprocess call
@@ -118,6 +115,6 @@ url=\"\"
 
     //creating the .gitignore
     let path = format!("{}/.gitignore", project_name);
-    let contents = "#ignore the virtual env\nenv/";
+    let contents = "#ignore the virtual env\n/env";
     fs::write(path, contents).expect("Couldn't write .gitignore file");
 }
