@@ -19,14 +19,14 @@ A Rustified package manager for python
 # Road Map
 
 ### 0.0.3
-- Support for md in the doc strings
-- Convert doc to html
-- ~Linux support~
-- ~Ability to generate Docs from the docstrings~
+- [] Support for md in the doc strings
+- [] Convert doc to html
+- [x] Linux support
+- [x] Ability to generate Docs from the docstrings~
 
 ### 0.0.2
-- ~Ability to run the python program using `ferry run`~
-- ~Better Cli~
+- [x] Ability to run the python program using `ferry run`
+- [x] Better Cli
 
 
 
