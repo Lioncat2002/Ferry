@@ -5,11 +5,12 @@ pub fn generate_docs(path: String) {
     /*
     setting '''doc as a special type of docstring which will be used
     for generating documentation :p
-
+    (?s) is used for multi line matching
     also use lazy repetition(.*?) instead of greedy(.*)
     else incorrect selection of docstring contents occures when
     using multiple docstrings in a single file
     ref: https://users.rust-lang.org/t/regular-expression/56925/4
+
     */
     let re = Regex::new(r"(?s)def(.*?)'''doc(.*?)'''").unwrap();
 
