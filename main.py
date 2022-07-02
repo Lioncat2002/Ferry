@@ -5,9 +5,9 @@ This file is used for testing the documentation generation
 Example:
 def some_function_name():
     '''doc 
-    will generate a doc file
-    This will generate documentation of commented 
-    functions as well like this one :p
+    will generate a doc file  
+    This will generate documentation of commented  
+    functions as well like this one :p  
     '''
     ...
     code
@@ -16,9 +16,10 @@ def some_function_name():
 """
 def hello():
     '''doc
-    # This is a test
-     Prints hello World  
-     test  
+    # This is a test  
+    Prints hello World    
+    Adding two or more spaces after a line adds a <br> in the html  
+    test  
     >>> Hellow
     '''
     print('Hello World!')
