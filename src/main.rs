@@ -1,18 +1,18 @@
 mod cli;
-mod executor;
+mod commands;
 
 use clap::Parser;
 
 use cli::{Cli, Command as FerryCommand};
-use executor::{generate_docs, install_deps, new_project, run_program};
+use commands::{run, install_deps, new_project, doc_gen};
 
 fn main() {
     let cli = Cli::parse();
 
     match cli.command {
-        FerryCommand::Run => run_program(),
-        FerryCommand::Fetch => install_deps(),
-        FerryCommand::New { project_name } => new_project(project_name),
-        FerryCommand::Doc { path } => generate_docs(path),
+        FerryCommand::Run => run::run_program(),
+        FerryCommand::Fetch => install_deps::install_deps(),
+        FerryCommand::New { project_name } =>new_project::new_project(project_name),
+        FerryCommand::Doc { path } => doc_gen::generate_docs(path),
     }
 }
