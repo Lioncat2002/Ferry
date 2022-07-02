@@ -19,8 +19,8 @@ A Rustified package manager for python
 # Road Map
 
 ### 0.0.3
-- [] Support for md in the doc strings
-- [] Convert doc to html
+- [ ] Support for md in the doc strings
+- [ ] Convert doc to html
 - [x] Linux support
 - [x] Ability to generate Docs from the docstrings~
 
